@@ -1,0 +1,677 @@
+---
+#
+# [Required]. A connection profile contains information about a set of network
+# components. It is typically used to configure gateway, allowing applications
+# interact with a network channel without worrying about the underlying
+# topology. A connection profile is normally created by an administrator who
+# understands this topology.
+#
+name: "connection.profile"
+#
+# [Optional]. Analogous to HTTP, properties with an "x-" prefix are deemed
+# "application-specific", and ignored by the gateway. For example, property
+# "x-type" with value "hlfv1" was originally used to identify a connection
+# profile for Fabric 1.x rather than 0.x.
+#
+x-type: "hlfv1"
+#
+# [Required]. A short description of the connection profile
+#
+description: "Sample connection profile for user guidance"
+#
+# [Required]. Connection profile schema version. Used by the gateway to
+# interpret these data.
+#
+version: "1.0"
+#
+# [Required]. List of organizations for all channels. At least one organization is required.
+#
+organizations:
+   #
+   # [Required]. Organizational information
+   #
+  msrt:
+    #
+    # [Required]. The MSPID used in network
+    #
+    mspid: OrgmsrtMSP
+    #
+    # [Required]. The peers
+    #
+    peers:
+      - peer1.msrt.com
+      - peer2.msrt.com
+      - peer3.msrt.com
+      #
+    # [Optional]. The orderers
+    #
+    orderers:
+      - orderer1.orderer.msrt.com
+      #
+    # [Optional]. Fabric-CA Certificate Authorities.
+    #
+    certificateAuthorities:
+      - ca.msrt.com
+  #
+  ui:
+    #
+    # [Required]. The MSPID used in network
+    #
+    mspid: OrguiMSP
+    #
+    # [Required]. The peers
+    #
+    peers:
+      - peer4.ui.com
+      - peer5.ui.com
+      #
+    # [Optional]. The orderers
+    #
+    orderers:
+      - orderer2.orderer.ui.com
+      #
+    # [Optional]. Fabric-CA Certificate Authorities.
+    #
+    certificateAuthorities:
+      - ca.ui.com
+  #
+  iut:
+    #
+    # [Required]. The MSPID used in network
+    #
+    mspid: OrgiutMSP
+    #
+    # [Required]. The peers
+    #
+    peers:
+      - peer6.iut.com
+      - peer7.iut.com
+      #
+    # [Optional]. The orderers
+    #
+    orderers:
+      - orderer3.orderer.iut.com
+      #
+    # [Optional]. Fabric-CA Certificate Authorities.
+    #
+    certificateAuthorities:
+      - ca.iut.com
+  #
+  
+# 
+# [Optional]. Orderer physical information, by orderer name
+#
+orderers:
+  #
+  # [Required]. Name of orderers
+  #
+  orderer1.orderer.msrt.com:
+    #
+    # [Required]. This orderer's IP address
+    #
+    url: grpcs://orderer1-orderer-msrt.mahdieh-bonyak.baas.greenrnd.com:443
+    tlsCACerts:
+      pem: |-
+        -----BEGIN CERTIFICATE-----
+        MIICVDCCAfmgAwIBAgIQDhYI1VwnJ4USnjxlC3zGcTAKBggqhkjOPQQDAjB0MRIw
+        EAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UEBxMFZWFy
+        dGgxETAPBgNVBAoTCG1zcnQuY29tMREwDwYDVQQLEwhHcmVlblJuRDEXMBUGA1UE
+        AxMOdGxzY2EubXNydC5jb20wHhcNMjIwODI5MDYzMDAwWhcNMzIwODI2MDYzMDAw
+        WjB0MRIwEAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UE
+        BxMFZWFydGgxETAPBgNVBAoTCG1zcnQuY29tMREwDwYDVQQLEwhHcmVlblJuRDEX
+        MBUGA1UEAxMOdGxzY2EubXNydC5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNC
+        AAQVpqYTxg/j7c9SBJwG4q1Pv6wD4cGuNMsQgH14RSdCZOQQBSkLrmjg2np7AN0z
+        OxHqHVpRWzt7deZ8SVR+1soUo20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYw
+        FAYIKwYBBQUHAwIGCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIE
+        IK1lkPqYw4bHdoC37noRMOFw/PH5vFzvf9iLvqjhmI95MAoGCCqGSM49BAMCA0kA
+        MEYCIQC9xBk8/bdCckylFWyLNR5WY/OMuPItXXBVZlKw87GX6gIhAOp+RQM5U8un
+        QEAY4Lcah/rYZd3bDDsCbkshrd4RqI8Z
+        -----END CERTIFICATE-----
+
+
+    #
+    # [Optional]. gRPC connection properties used for communication
+    #
+    grpcOptions:
+      ssl-target-name-override: orderer1.orderer.msrt.com
+      hostnameOverride: orderer1.orderer.msrt.com
+  #
+  orderer2.orderer.ui.com:
+    #
+    # [Required]. This orderer's IP address
+    #
+    url: grpcs://orderer2-orderer-ui.mahdieh-bonyak.baas.greenrnd.com:443
+    tlsCACerts:
+      pem: |-
+        -----BEGIN CERTIFICATE-----
+        MIICSzCCAfGgAwIBAgIQa3K0HLYVEs5ATRVttva0BDAKBggqhkjOPQQDAjBwMRIw
+        EAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UEBxMFZWFy
+        dGgxDzANBgNVBAoTBnVpLmNvbTERMA8GA1UECxMIR3JlZW5SbkQxFTATBgNVBAMT
+        DHRsc2NhLnVpLmNvbTAeFw0yMjA4MjkwNjMyMDBaFw0zMjA4MjYwNjMyMDBaMHAx
+        EjAQBgNVBAYTCVdvcmxkV2lkZTEPMA0GA1UECBMGZ2FsYXh5MQ4wDAYDVQQHEwVl
+        YXJ0aDEPMA0GA1UEChMGdWkuY29tMREwDwYDVQQLEwhHcmVlblJuRDEVMBMGA1UE
+        AxMMdGxzY2EudWkuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEqK0YHJIj
+        n5aiUGN8QeBhynhgMVPiYNfl4rtAt5LLeDvasLa8ZFQfjYWTuM47ctnDdfNFj73z
+        R2dnWN57Z22Pe6NtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUF
+        BwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCDlYwmY/baK
+        8eQs+Ikn3AtHKCouf/lDmtqH5wPEhA/6ZjAKBggqhkjOPQQDAgNIADBFAiAiNtLJ
+        j8lZPN9GtTzMh709eqxg2o+wWJryfuchYcRYOQIhAIdNQ64TtQMBDPntULmpPcVZ
+        ENQhgDwKxZUFsQGEJNEo
+        -----END CERTIFICATE-----
+
+
+    #
+    # [Optional]. gRPC connection properties used for communication
+    #
+    grpcOptions:
+      ssl-target-name-override: orderer2.orderer.ui.com
+      hostnameOverride: orderer2.orderer.ui.com
+  #
+  orderer3.orderer.iut.com:
+    #
+    # [Required]. This orderer's IP address
+    #
+    url: grpcs://orderer3-orderer-iut.mahdieh-bonyak.baas.greenrnd.com:443
+    tlsCACerts:
+      pem: |-
+        -----BEGIN CERTIFICATE-----
+        MIICTzCCAfWgAwIBAgIQDSKr4mQU9xElLJkKFQOiKDAKBggqhkjOPQQDAjByMRIw
+        EAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UEBxMFZWFy
+        dGgxEDAOBgNVBAoTB2l1dC5jb20xETAPBgNVBAsTCEdyZWVuUm5EMRYwFAYDVQQD
+        Ew10bHNjYS5pdXQuY29tMB4XDTIyMDgyOTA2MzQwMFoXDTMyMDgyNjA2MzQwMFow
+        cjESMBAGA1UEBhMJV29ybGRXaWRlMQ8wDQYDVQQIEwZnYWxheHkxDjAMBgNVBAcT
+        BWVhcnRoMRAwDgYDVQQKEwdpdXQuY29tMREwDwYDVQQLEwhHcmVlblJuRDEWMBQG
+        A1UEAxMNdGxzY2EuaXV0LmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABDIb
+        nyzuVg1OmjQDYjgVtlJdo89HY6LxewBji+eRX1mKPNec9cfAEo5zLlreO+/r7q+x
+        08zi3qPHhPEm4Dso7OGjbTBrMA4GA1UdDwEB/wQEAwIBpjAdBgNVHSUEFjAUBggr
+        BgEFBQcDAgYIKwYBBQUHAwEwDwYDVR0TAQH/BAUwAwEB/zApBgNVHQ4EIgQg+kay
+        VxzywAUapF4wI5X+LKvF8pueizxaN92nFaFQFzQwCgYIKoZIzj0EAwIDSAAwRQIg
+        D8TBWnE/kKhW8xxtaJyMUQjuvUFl4VezWA170XFwg7UCIQC3nXdJy8GgI+d3i0fN
+        ast8+mKGGnyNh+qeD/DfgiJ6Og==
+        -----END CERTIFICATE-----
+
+
+    #
+    # [Optional]. gRPC connection properties used for communication
+    #
+    grpcOptions:
+      ssl-target-name-override: orderer3.orderer.iut.com
+      hostnameOverride: orderer3.orderer.iut.com
+  #
+  #
+# [Required]. Peers physical information, by peer name. At least one peer is required.
+#
+peers:
+  #
+  # [Required]. peers physical properties
+  #
+  peer1.msrt.com:
+    #
+    # [Required]. Peer's IP address
+    #
+    url: grpcs://peer1-msrt.mahdieh-bonyak.baas.greenrnd.com:443
+    tlsCACerts:
+      pem: |-
+        -----BEGIN CERTIFICATE-----
+        MIICVDCCAfmgAwIBAgIQDhYI1VwnJ4USnjxlC3zGcTAKBggqhkjOPQQDAjB0MRIw
+        EAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UEBxMFZWFy
+        dGgxETAPBgNVBAoTCG1zcnQuY29tMREwDwYDVQQLEwhHcmVlblJuRDEXMBUGA1UE
+        AxMOdGxzY2EubXNydC5jb20wHhcNMjIwODI5MDYzMDAwWhcNMzIwODI2MDYzMDAw
+        WjB0MRIwEAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UE
+        BxMFZWFydGgxETAPBgNVBAoTCG1zcnQuY29tMREwDwYDVQQLEwhHcmVlblJuRDEX
+        MBUGA1UEAxMOdGxzY2EubXNydC5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNC
+        AAQVpqYTxg/j7c9SBJwG4q1Pv6wD4cGuNMsQgH14RSdCZOQQBSkLrmjg2np7AN0z
+        OxHqHVpRWzt7deZ8SVR+1soUo20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYw
+        FAYIKwYBBQUHAwIGCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIE
+        IK1lkPqYw4bHdoC37noRMOFw/PH5vFzvf9iLvqjhmI95MAoGCCqGSM49BAMCA0kA
+        MEYCIQC9xBk8/bdCckylFWyLNR5WY/OMuPItXXBVZlKw87GX6gIhAOp+RQM5U8un
+        QEAY4Lcah/rYZd3bDDsCbkshrd4RqI8Z
+        -----END CERTIFICATE-----
+
+
+    #
+    # [Optional]. gRPC connection properties used for communication
+    #
+    grpcOptions:
+      ssl-target-name-override: peer1.msrt.com
+      hostnameOverride: peer1.msrt.com
+      request-timeout: 120001
+  #
+  peer2.msrt.com:
+    #
+    # [Required]. Peer's IP address
+    #
+    url: grpcs://peer2-msrt.mahdieh-bonyak.baas.greenrnd.com:443
+    tlsCACerts:
+      pem: |-
+        -----BEGIN CERTIFICATE-----
+        MIICVDCCAfmgAwIBAgIQDhYI1VwnJ4USnjxlC3zGcTAKBggqhkjOPQQDAjB0MRIw
+        EAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UEBxMFZWFy
+        dGgxETAPBgNVBAoTCG1zcnQuY29tMREwDwYDVQQLEwhHcmVlblJuRDEXMBUGA1UE
+        AxMOdGxzY2EubXNydC5jb20wHhcNMjIwODI5MDYzMDAwWhcNMzIwODI2MDYzMDAw
+        WjB0MRIwEAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UE
+        BxMFZWFydGgxETAPBgNVBAoTCG1zcnQuY29tMREwDwYDVQQLEwhHcmVlblJuRDEX
+        MBUGA1UEAxMOdGxzY2EubXNydC5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNC
+        AAQVpqYTxg/j7c9SBJwG4q1Pv6wD4cGuNMsQgH14RSdCZOQQBSkLrmjg2np7AN0z
+        OxHqHVpRWzt7deZ8SVR+1soUo20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYw
+        FAYIKwYBBQUHAwIGCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIE
+        IK1lkPqYw4bHdoC37noRMOFw/PH5vFzvf9iLvqjhmI95MAoGCCqGSM49BAMCA0kA
+        MEYCIQC9xBk8/bdCckylFWyLNR5WY/OMuPItXXBVZlKw87GX6gIhAOp+RQM5U8un
+        QEAY4Lcah/rYZd3bDDsCbkshrd4RqI8Z
+        -----END CERTIFICATE-----
+
+
+    #
+    # [Optional]. gRPC connection properties used for communication
+    #
+    grpcOptions:
+      ssl-target-name-override: peer2.msrt.com
+      hostnameOverride: peer2.msrt.com
+      request-timeout: 120001
+  #
+  peer3.msrt.com:
+    #
+    # [Required]. Peer's IP address
+    #
+    url: grpcs://peer3-msrt.mahdieh-bonyak.baas.greenrnd.com:443
+    tlsCACerts:
+      pem: |-
+        -----BEGIN CERTIFICATE-----
+        MIICVDCCAfmgAwIBAgIQDhYI1VwnJ4USnjxlC3zGcTAKBggqhkjOPQQDAjB0MRIw
+        EAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UEBxMFZWFy
+        dGgxETAPBgNVBAoTCG1zcnQuY29tMREwDwYDVQQLEwhHcmVlblJuRDEXMBUGA1UE
+        AxMOdGxzY2EubXNydC5jb20wHhcNMjIwODI5MDYzMDAwWhcNMzIwODI2MDYzMDAw
+        WjB0MRIwEAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UE
+        BxMFZWFydGgxETAPBgNVBAoTCG1zcnQuY29tMREwDwYDVQQLEwhHcmVlblJuRDEX
+        MBUGA1UEAxMOdGxzY2EubXNydC5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNC
+        AAQVpqYTxg/j7c9SBJwG4q1Pv6wD4cGuNMsQgH14RSdCZOQQBSkLrmjg2np7AN0z
+        OxHqHVpRWzt7deZ8SVR+1soUo20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYw
+        FAYIKwYBBQUHAwIGCCsGAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIE
+        IK1lkPqYw4bHdoC37noRMOFw/PH5vFzvf9iLvqjhmI95MAoGCCqGSM49BAMCA0kA
+        MEYCIQC9xBk8/bdCckylFWyLNR5WY/OMuPItXXBVZlKw87GX6gIhAOp+RQM5U8un
+        QEAY4Lcah/rYZd3bDDsCbkshrd4RqI8Z
+        -----END CERTIFICATE-----
+
+
+    #
+    # [Optional]. gRPC connection properties used for communication
+    #
+    grpcOptions:
+      ssl-target-name-override: peer3.msrt.com
+      hostnameOverride: peer3.msrt.com
+      request-timeout: 120001
+  #
+  peer4.ui.com:
+    #
+    # [Required]. Peer's IP address
+    #
+    url: grpcs://peer4-ui.mahdieh-bonyak.baas.greenrnd.com:443
+    tlsCACerts:
+      pem: |-
+        -----BEGIN CERTIFICATE-----
+        MIICSzCCAfGgAwIBAgIQa3K0HLYVEs5ATRVttva0BDAKBggqhkjOPQQDAjBwMRIw
+        EAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UEBxMFZWFy
+        dGgxDzANBgNVBAoTBnVpLmNvbTERMA8GA1UECxMIR3JlZW5SbkQxFTATBgNVBAMT
+        DHRsc2NhLnVpLmNvbTAeFw0yMjA4MjkwNjMyMDBaFw0zMjA4MjYwNjMyMDBaMHAx
+        EjAQBgNVBAYTCVdvcmxkV2lkZTEPMA0GA1UECBMGZ2FsYXh5MQ4wDAYDVQQHEwVl
+        YXJ0aDEPMA0GA1UEChMGdWkuY29tMREwDwYDVQQLEwhHcmVlblJuRDEVMBMGA1UE
+        AxMMdGxzY2EudWkuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEqK0YHJIj
+        n5aiUGN8QeBhynhgMVPiYNfl4rtAt5LLeDvasLa8ZFQfjYWTuM47ctnDdfNFj73z
+        R2dnWN57Z22Pe6NtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUF
+        BwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCDlYwmY/baK
+        8eQs+Ikn3AtHKCouf/lDmtqH5wPEhA/6ZjAKBggqhkjOPQQDAgNIADBFAiAiNtLJ
+        j8lZPN9GtTzMh709eqxg2o+wWJryfuchYcRYOQIhAIdNQ64TtQMBDPntULmpPcVZ
+        ENQhgDwKxZUFsQGEJNEo
+        -----END CERTIFICATE-----
+
+
+    #
+    # [Optional]. gRPC connection properties used for communication
+    #
+    grpcOptions:
+      ssl-target-name-override: peer4.ui.com
+      hostnameOverride: peer4.ui.com
+      request-timeout: 120001
+  #
+  peer5.ui.com:
+    #
+    # [Required]. Peer's IP address
+    #
+    url: grpcs://peer5-ui.mahdieh-bonyak.baas.greenrnd.com:443
+    tlsCACerts:
+      pem: |-
+        -----BEGIN CERTIFICATE-----
+        MIICSzCCAfGgAwIBAgIQa3K0HLYVEs5ATRVttva0BDAKBggqhkjOPQQDAjBwMRIw
+        EAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UEBxMFZWFy
+        dGgxDzANBgNVBAoTBnVpLmNvbTERMA8GA1UECxMIR3JlZW5SbkQxFTATBgNVBAMT
+        DHRsc2NhLnVpLmNvbTAeFw0yMjA4MjkwNjMyMDBaFw0zMjA4MjYwNjMyMDBaMHAx
+        EjAQBgNVBAYTCVdvcmxkV2lkZTEPMA0GA1UECBMGZ2FsYXh5MQ4wDAYDVQQHEwVl
+        YXJ0aDEPMA0GA1UEChMGdWkuY29tMREwDwYDVQQLEwhHcmVlblJuRDEVMBMGA1UE
+        AxMMdGxzY2EudWkuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEqK0YHJIj
+        n5aiUGN8QeBhynhgMVPiYNfl4rtAt5LLeDvasLa8ZFQfjYWTuM47ctnDdfNFj73z
+        R2dnWN57Z22Pe6NtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUF
+        BwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCDlYwmY/baK
+        8eQs+Ikn3AtHKCouf/lDmtqH5wPEhA/6ZjAKBggqhkjOPQQDAgNIADBFAiAiNtLJ
+        j8lZPN9GtTzMh709eqxg2o+wWJryfuchYcRYOQIhAIdNQ64TtQMBDPntULmpPcVZ
+        ENQhgDwKxZUFsQGEJNEo
+        -----END CERTIFICATE-----
+
+
+    #
+    # [Optional]. gRPC connection properties used for communication
+    #
+    grpcOptions:
+      ssl-target-name-override: peer5.ui.com
+      hostnameOverride: peer5.ui.com
+      request-timeout: 120001
+  #
+  peer6.iut.com:
+    #
+    # [Required]. Peer's IP address
+    #
+    url: grpcs://peer6-iut.mahdieh-bonyak.baas.greenrnd.com:443
+    tlsCACerts:
+      pem: |-
+        -----BEGIN CERTIFICATE-----
+        MIICTzCCAfWgAwIBAgIQDSKr4mQU9xElLJkKFQOiKDAKBggqhkjOPQQDAjByMRIw
+        EAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UEBxMFZWFy
+        dGgxEDAOBgNVBAoTB2l1dC5jb20xETAPBgNVBAsTCEdyZWVuUm5EMRYwFAYDVQQD
+        Ew10bHNjYS5pdXQuY29tMB4XDTIyMDgyOTA2MzQwMFoXDTMyMDgyNjA2MzQwMFow
+        cjESMBAGA1UEBhMJV29ybGRXaWRlMQ8wDQYDVQQIEwZnYWxheHkxDjAMBgNVBAcT
+        BWVhcnRoMRAwDgYDVQQKEwdpdXQuY29tMREwDwYDVQQLEwhHcmVlblJuRDEWMBQG
+        A1UEAxMNdGxzY2EuaXV0LmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABDIb
+        nyzuVg1OmjQDYjgVtlJdo89HY6LxewBji+eRX1mKPNec9cfAEo5zLlreO+/r7q+x
+        08zi3qPHhPEm4Dso7OGjbTBrMA4GA1UdDwEB/wQEAwIBpjAdBgNVHSUEFjAUBggr
+        BgEFBQcDAgYIKwYBBQUHAwEwDwYDVR0TAQH/BAUwAwEB/zApBgNVHQ4EIgQg+kay
+        VxzywAUapF4wI5X+LKvF8pueizxaN92nFaFQFzQwCgYIKoZIzj0EAwIDSAAwRQIg
+        D8TBWnE/kKhW8xxtaJyMUQjuvUFl4VezWA170XFwg7UCIQC3nXdJy8GgI+d3i0fN
+        ast8+mKGGnyNh+qeD/DfgiJ6Og==
+        -----END CERTIFICATE-----
+
+
+    #
+    # [Optional]. gRPC connection properties used for communication
+    #
+    grpcOptions:
+      ssl-target-name-override: peer6.iut.com
+      hostnameOverride: peer6.iut.com
+      request-timeout: 120001
+  #
+  peer7.iut.com:
+    #
+    # [Required]. Peer's IP address
+    #
+    url: grpcs://peer7-iut.mahdieh-bonyak.baas.greenrnd.com:443
+    tlsCACerts:
+      pem: |-
+        -----BEGIN CERTIFICATE-----
+        MIICTzCCAfWgAwIBAgIQDSKr4mQU9xElLJkKFQOiKDAKBggqhkjOPQQDAjByMRIw
+        EAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UEBxMFZWFy
+        dGgxEDAOBgNVBAoTB2l1dC5jb20xETAPBgNVBAsTCEdyZWVuUm5EMRYwFAYDVQQD
+        Ew10bHNjYS5pdXQuY29tMB4XDTIyMDgyOTA2MzQwMFoXDTMyMDgyNjA2MzQwMFow
+        cjESMBAGA1UEBhMJV29ybGRXaWRlMQ8wDQYDVQQIEwZnYWxheHkxDjAMBgNVBAcT
+        BWVhcnRoMRAwDgYDVQQKEwdpdXQuY29tMREwDwYDVQQLEwhHcmVlblJuRDEWMBQG
+        A1UEAxMNdGxzY2EuaXV0LmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABDIb
+        nyzuVg1OmjQDYjgVtlJdo89HY6LxewBji+eRX1mKPNec9cfAEo5zLlreO+/r7q+x
+        08zi3qPHhPEm4Dso7OGjbTBrMA4GA1UdDwEB/wQEAwIBpjAdBgNVHSUEFjAUBggr
+        BgEFBQcDAgYIKwYBBQUHAwEwDwYDVR0TAQH/BAUwAwEB/zApBgNVHQ4EIgQg+kay
+        VxzywAUapF4wI5X+LKvF8pueizxaN92nFaFQFzQwCgYIKoZIzj0EAwIDSAAwRQIg
+        D8TBWnE/kKhW8xxtaJyMUQjuvUFl4VezWA170XFwg7UCIQC3nXdJy8GgI+d3i0fN
+        ast8+mKGGnyNh+qeD/DfgiJ6Og==
+        -----END CERTIFICATE-----
+
+
+    #
+    # [Optional]. gRPC connection properties used for communication
+    #
+    grpcOptions:
+      ssl-target-name-override: peer7.iut.com
+      hostnameOverride: peer7.iut.com
+      request-timeout: 120001
+  #
+  #
+# [Optional]. Fabric-CA Certificate Authority physical information, by name.
+# This information can be used to (e.g.) enroll new users. Communication is via
+# REST, hence options relate to HTTP rather than gRPC.
+#
+certificateAuthorities:
+  #
+  # [Required]. CA
+  #
+  ca.msrt.com:
+    #
+    # [Required]. CA IP address
+    #
+    url: https://ca-msrt.mahdieh-bonyak.baas.greenrnd.com:443
+    tlsCACerts:
+      pem: |-
+        -----BEGIN CERTIFICATE-----
+        MIICTTCCAfSgAwIBAgIRALFA7QrvbVCATtFAWpxXpXYwCgYIKoZIzj0EAwIwcTES
+        MBAGA1UEBhMJV29ybGRXaWRlMQ8wDQYDVQQIEwZnYWxheHkxDjAMBgNVBAcTBWVh
+        cnRoMREwDwYDVQQKEwhtc3J0LmNvbTERMA8GA1UECxMIR3JlZW5SbkQxFDASBgNV
+        BAMTC2NhLm1zcnQuY29tMB4XDTIyMDgyOTA2MzAwMFoXDTMyMDgyNjA2MzAwMFow
+        cTESMBAGA1UEBhMJV29ybGRXaWRlMQ8wDQYDVQQIEwZnYWxheHkxDjAMBgNVBAcT
+        BWVhcnRoMREwDwYDVQQKEwhtc3J0LmNvbTERMA8GA1UECxMIR3JlZW5SbkQxFDAS
+        BgNVBAMTC2NhLm1zcnQuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEIq3i
+        wglFgyIoQbI7ocKCWqXcGZYlDxBvz6T30XeOJs1jeyXtxVU20wpaJRnbwVwTG8gn
+        g/UxamTCz5wj2n0BPqNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsG
+        AQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCAnYXjw
+        F8MiucG4yn98sHYz9fo1yLSshv86mbltxOBbeDAKBggqhkjOPQQDAgNHADBEAiAa
+        dwz1oy4XsjburpmfvfCyAb6fMaa3CQcMoBy0gpYg7wIgX97VEd6sAU+EcC6+ORA2
+        NN7OJE9Jb780d65aBh0yc6I=
+        -----END CERTIFICATE-----
+
+
+    #
+    # [Optioanl]. HTTP connection properties used for communication
+    #
+    httpOptions:
+      verify: false
+    #
+    # [Optional]. Fabric-CA supports Certificate Signing Requests (CSRs). A registrar is needed to enroll new users.
+    #
+    # registrar:
+    #   - enrollId: admin
+    #     enrollSecret: adminpw
+    #
+    # [Optional]. The name of the CA.
+    #
+    caName: ca.msrt.com
+  #
+  ca.ui.com:
+    #
+    # [Required]. CA IP address
+    #
+    url: https://ca-ui.mahdieh-bonyak.baas.greenrnd.com:443
+    tlsCACerts:
+      pem: |-
+        -----BEGIN CERTIFICATE-----
+        MIICRDCCAeugAwIBAgIQezD2ZwprdJnAtKvAtR7P8TAKBggqhkjOPQQDAjBtMRIw
+        EAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UEBxMFZWFy
+        dGgxDzANBgNVBAoTBnVpLmNvbTERMA8GA1UECxMIR3JlZW5SbkQxEjAQBgNVBAMT
+        CWNhLnVpLmNvbTAeFw0yMjA4MjkwNjMyMDBaFw0zMjA4MjYwNjMyMDBaMG0xEjAQ
+        BgNVBAYTCVdvcmxkV2lkZTEPMA0GA1UECBMGZ2FsYXh5MQ4wDAYDVQQHEwVlYXJ0
+        aDEPMA0GA1UEChMGdWkuY29tMREwDwYDVQQLEwhHcmVlblJuRDESMBAGA1UEAxMJ
+        Y2EudWkuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEG9ZJ2DWmF09CJVfE
+        QeJtiDJPGbfZCpNIXhaeFHG3xuBP8nbtZOOeJ0tdVMbrFUl9Z4r0O3gbpT1oUucE
+        a/6UbqNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggr
+        BgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCBFG3pvXbivVaPV8vS0
+        lStP/vlREv8taj2GdfUWbAodwzAKBggqhkjOPQQDAgNHADBEAiAs21grrZKB0gEv
+        nsCz/acL+VwTsy0Si5QvdOHzrDkHuwIgYVTBqzBIwDs9TXe7wqOKG9XQW8Z2+e8d
+        IQs5VnQB1eM=
+        -----END CERTIFICATE-----
+
+
+    #
+    # [Optioanl]. HTTP connection properties used for communication
+    #
+    httpOptions:
+      verify: false
+    #
+    # [Optional]. Fabric-CA supports Certificate Signing Requests (CSRs). A registrar is needed to enroll new users.
+    #
+    # registrar:
+    #   - enrollId: admin
+    #     enrollSecret: adminpw
+    #
+    # [Optional]. The name of the CA.
+    #
+    caName: ca.ui.com
+  #
+  ca.iut.com:
+    #
+    # [Required]. CA IP address
+    #
+    url: https://ca-iut.mahdieh-bonyak.baas.greenrnd.com:443
+    tlsCACerts:
+      pem: |-
+        -----BEGIN CERTIFICATE-----
+        MIICSDCCAe+gAwIBAgIQKoM7nNZI+Ft6CSaYSbVURzAKBggqhkjOPQQDAjBvMRIw
+        EAYDVQQGEwlXb3JsZFdpZGUxDzANBgNVBAgTBmdhbGF4eTEOMAwGA1UEBxMFZWFy
+        dGgxEDAOBgNVBAoTB2l1dC5jb20xETAPBgNVBAsTCEdyZWVuUm5EMRMwEQYDVQQD
+        EwpjYS5pdXQuY29tMB4XDTIyMDgyOTA2MzQwMFoXDTMyMDgyNjA2MzQwMFowbzES
+        MBAGA1UEBhMJV29ybGRXaWRlMQ8wDQYDVQQIEwZnYWxheHkxDjAMBgNVBAcTBWVh
+        cnRoMRAwDgYDVQQKEwdpdXQuY29tMREwDwYDVQQLEwhHcmVlblJuRDETMBEGA1UE
+        AxMKY2EuaXV0LmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABLBOGRnfSWzo
+        heOPUXPVa5VSemy5EPB1xSg8UIJF33vfvqz6zGdTwCPxlTmnE9X9ABAmCthi7IWi
+        85zCN8nIriyjbTBrMA4GA1UdDwEB/wQEAwIBpjAdBgNVHSUEFjAUBggrBgEFBQcD
+        AgYIKwYBBQUHAwEwDwYDVR0TAQH/BAUwAwEB/zApBgNVHQ4EIgQg4+eWTc9Z9nYJ
+        5zv7IARwEyif8ohcSWKfOx3fa/o5pp4wCgYIKoZIzj0EAwIDRwAwRAIgDIwQYj/H
+        /jJ0yTcHDi1Mnra4pj3YFuykyWot5v9NZFECICre5qwg51ALU/BCmD6PjoC5hsfj
+        JeyDf3lTsaeN6omP
+        -----END CERTIFICATE-----
+
+
+    #
+    # [Optioanl]. HTTP connection properties used for communication
+    #
+    httpOptions:
+      verify: false
+    #
+    # [Optional]. Fabric-CA supports Certificate Signing Requests (CSRs). A registrar is needed to enroll new users.
+    #
+    # registrar:
+    #   - enrollId: admin
+    #     enrollSecret: adminpw
+    #
+    # [Optional]. The name of the CA.
+    #
+    caName: ca.iut.com
+  #
+  #
+# [Optional]. A logical description of each network channel; its peer and
+# orderer names and their roles within the channel. The physical details of
+# these components (e.g. peer IP addresses) will be specified later in the
+# profile; we focus first on the logical, and then the physical.
+#
+channels:
+  #
+  
+  channel1:
+    #
+    # [Optional]. Channel orderers. Details of how to connect to
+    # them is specified later, under the physical "orderers:" section
+    #
+    orderers:
+    #
+    # [Required]. Orderer logical name
+    #
+      - orderer2.orderer.ui.com
+      
+    #
+    # [Optional]. Peers and their roles
+    #
+    peers:
+    #
+    # [Required]. Peer logical name
+    #
+    # endorsingPeer:
+    # [Optional]. Is this an endorsing peer? (It must have chaincode
+    # installed.) Default: true
+    #
+    # chaincodeQuery:
+    # [Optional]. Is this peer used for query? (It must have chaincode
+    # installed.) Default: true
+    #
+    # ledgerQuery:
+    # [Optional]. Is this peer used for non-chaincode queries? All peers
+    # support these types of queries, which include queryBlock(),
+    # queryTransaction(), etc. Default: true
+    #
+    # eventSource:
+    # [Optional]. Is this peer used as an event hub? All peers can produce
+    # events. Default: true
+    #
+      peer1.msrt.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      #
+      peer4.ui.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      #
+      peer5.ui.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      #
+      
+  channel2:
+    #
+    # [Optional]. Channel orderers. Details of how to connect to
+    # them is specified later, under the physical "orderers:" section
+    #
+    orderers:
+    #
+    # [Required]. Orderer logical name
+    #
+      - orderer3.orderer.iut.com
+      
+    #
+    # [Optional]. Peers and their roles
+    #
+    peers:
+    #
+    # [Required]. Peer logical name
+    #
+    # endorsingPeer:
+    # [Optional]. Is this an endorsing peer? (It must have chaincode
+    # installed.) Default: true
+    #
+    # chaincodeQuery:
+    # [Optional]. Is this peer used for query? (It must have chaincode
+    # installed.) Default: true
+    #
+    # ledgerQuery:
+    # [Optional]. Is this peer used for non-chaincode queries? All peers
+    # support these types of queries, which include queryBlock(),
+    # queryTransaction(), etc. Default: true
+    #
+    # eventSource:
+    # [Optional]. Is this peer used as an event hub? All peers can produce
+    # events. Default: true
+    #
+      peer2.msrt.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      #
+      peer6.iut.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      #
+      peer7.iut.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      #
+      
